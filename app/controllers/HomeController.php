@@ -17,9 +17,11 @@ class HomeController extends BaseController {
 
 	public function showWelcome()
 	{
-		$laravelprojects = Projects::orderBy('id', 'DESC')->paginate(8);
+		$laravelprojects = Projects::get();
 
-	return View::make('site/index')->with('laravelprojects', $laravelprojects);
+		
 	}
+
+
 
 }

@@ -16,8 +16,17 @@ class AdminController extends BaseController {
 	*/
 
 	public function index()
-		{
-			return View::make('admin.index');
-		}
+	{
+		// return View::make('admin.index')->render();
+		// return Response::json(User::get());
+		return Response::json(array('user'=>Auth::user()->toArray()), 202);
+		// return View::make('admin.index')->render();
+		console.log('user');
+	}
+
+	public function show($id)
+	{
+		return Response::json(User::find($id));
+	}
 
 }

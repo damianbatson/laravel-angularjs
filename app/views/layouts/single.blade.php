@@ -13,13 +13,13 @@
     {{ HTML::style('//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css')}}
     
     <!-- Add custom CSS here -->
-    {{ HTML::style('css/styles.css') }}
+    <!-- {{ HTML::style('css/styles.css') }} -->
 
   </head>
 
   <body>
 
-    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <nav class="navbar navbar-inverse" role="navigation">
       <div class="container">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
@@ -34,9 +34,8 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse navbar-ex1-collapse">
           <ul class="nav navbar-nav">
-            <li><a href="#about">About</a></li>
-            <li><a href="#services">Services</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li>{{ HTML::link('auth/login', 'Login') }}</li>
+            <li>{{ HTML::link('/', 'Logout') }}</li>
           </ul>
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container -->

@@ -4,7 +4,7 @@ class AuthController extends BaseController {
 
 	public function getRegister()
 	{
-		return View::make('auth/register');
+		return View::make('auth.register');
 	}
 
 	public function postRegister()
@@ -23,25 +23,23 @@ class AuthController extends BaseController {
 			$user->password = Hash::make(Input::get('password'));
 			$user->save();
 
-			return Redirect::to('auth/login');
+			return Response::json(array('user'=>Auth::user()->toArray()), 202);
 
 		}
 
-		return Redirect::to('auth/register')->withErrors($v);
+		// return Redirect::to('auth/register')->withErrors($v);
 	}
 
-    public function getLogin(){
+    public function getLogin()
+    {
 
-        return View::make('auth/login');
+        return View::make('auth.login');
     }
 
     public function postLogin()
 	{
-
 		$input = Input::all();
-
 		$rules = array('email' => 'required', 'password' => 'required');
-
 		$v = Validator::make($input, $rules);
 
 		if($v->passes())
@@ -50,16 +48,17 @@ class AuthController extends BaseController {
 
 			if(Auth::attempt($credentials)){
 
-				return Redirect::to('admin');
+				return Response::json(array('user'=>Auth::user()->toArray()), 202);
+				// return Redirect::to('admin');
 
 			} else {
 
-				return Redirect::to('auth/login');
+				return Response::json(array('flash'=>'Auth Failed'), 401);
 			}
 		}
 
-		return Redirect::to('auth/login')->withErrors($v);
-		console.log('loginerr');
+		// return Redirect::to('auth/login')->withErrors($v);
+		// console.log('loginerr');
 
 	}
 

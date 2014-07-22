@@ -13,7 +13,7 @@
     {{ HTML::style('//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css')}}
     
     <!-- Add custom CSS here -->
-    {{ HTML::style('css/styles.css')}}
+    <!-- {{ HTML::style('css/styles.css')}} -->
 
   </head>
 
@@ -21,7 +21,6 @@
 
     <nav class="navbar navbar-inverse" role="navigation">
       <div class="container">
-      <div class="row">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
             <span class="sr-only">Toggle navigation</span>
@@ -35,11 +34,10 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse navbar-ex1-collapse">
           <ul class="nav navbar-nav">
-            <li>{{ HTML::link('portfolios/index', 'Projects') }}</li>
-            <li>{{ HTML::link('logout', 'Logout') }}</li>
+            <li>{{ link_to_route('portfolios.index', 'Projects') }}</li>
+            <li>{{ HTML::link('/', 'Logout') }}</li>
           </ul>
         </div><!-- /.navbar-collapse -->
-        </div>
       </div><!-- /.container -->
     </nav>
 

@@ -11,10 +11,10 @@
 |
 */
 
-Route::get('/', function()
-{
-	return View::make('site.index'); // will return app/views/index.php
-});
+// Route::get('/', function()
+// {
+// 	return View::make('site.index'); // will return app/views/index.php
+// });
 Route::get('login', function()
 {
 	return View::make('auth.login'); // will return app/views/index.php
@@ -36,10 +36,13 @@ Route::get('portfolios', function()
 	return View::make('portfolios.index'); // will return app/views/index.php
 });
 
-// Route::get('auth/login', 'AuthController@getLogin');
-Route::post('login', 'AuthController@postLogin');
-// Route::get('auth/register', 'AuthController@getRegister');
-Route::post('register', 'AuthController@postRegister');
+	Route::group(array('prefix' => 'api'), function() {
+		// Route::get('auth/login', 'AuthController@getLogin');
+		Route::post('login', 'AuthController@postLogin');
+		// Route::get('auth/register', 'AuthController@getRegister');
+		Route::post('register', 'AuthController@postRegister');
+
+	});
 
 Route::group(array('before' => 'auth.basic'), function(){	
 

@@ -68,7 +68,7 @@ angular.module('mainController', ['ngRoute'])
 
 	})
 
-	.controller('authCtrl', function($scope, $http, $location, Users, Projects, SessionService) {
+	.controller('authCtrl', function($scope, $http, $location, $rootScope, Users, Projects, SessionService) {
 		// object to hold all the data for the new comment form
 		$scope.projectData = {};
 
@@ -91,20 +91,19 @@ angular.module('mainController', ['ngRoute'])
 		// function to handle submitting the form
 		// SAVE A COMMENT ======================================================
 		$scope.login = function() {
-			$scope.loading = true;
+			var success = true;
 
 			// save the comment. pass in comment data from the form
 			// use the function we created in our service
 			Users.login($scope.authCredentials)
 				.success(function(data) {
-					console.log(data);
-					if (data.id){
-						SessionService.set('login', true);
-					}else{
-						alert('could not verify your login');
-					}
+					
+					if(success){
 					$location.path('/admin').replace();
-					$scope.$apply();
+					if (!$rootScope.$$phase) $rootScope.$apply();
+					console.log(data);
+				}
+
 					// if successful, we'll need to refresh the comment list
 					// Users.get()
 					// 	.success(function(getData) {
@@ -144,7 +143,7 @@ angular.module('mainController', ['ngRoute'])
 
 	})
 
-	.controller('adminCtrl', function($scope, $http, $location, Users) {
+	.controller('adminCtrl', function($scope, $http, $location, $rootScope, Users) {
 		// object to hold all the data for the new comment form
 		$scope.adminData = {};
 
@@ -172,7 +171,8 @@ angular.module('mainController', ['ngRoute'])
 			Users.logout($scope.authData)
 				.success(function(data) {
 					$location.path('/').replace();
-					$scope.$apply();
+					if (!$rootScope.$$phase) $rootScope.$apply();
+					console.log(data);
 					// if successful, we'll need to refresh the comment list
 					// Users.get()
 					// 	.success(function(getData) {
@@ -188,7 +188,7 @@ angular.module('mainController', ['ngRoute'])
 
 	})
 
-	.controller('projectsCtrl', function($scope, $http, Projects) {
+	.controller('projectsCtrl', function($scope, $http, $location, $rootScope, Projects) {
 		// object to hold all the data for the new comment form
 		$scope.projectData = {};
 
@@ -224,6 +224,9 @@ angular.module('mainController', ['ngRoute'])
 							$scope.projects = getData;
 							$scope.loading = false;
 						});
+						$location.path('/').replace();
+					if (!$rootScope.$$phase) $rootScope.$apply();
+					console.log(data);
 
 				})
 				.error(function(data) {

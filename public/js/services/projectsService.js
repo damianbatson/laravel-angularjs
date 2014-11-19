@@ -42,7 +42,7 @@ angular.module('projectsService', ['ngRoute'])
 			login : function(authCredentials) {
 				return $http({
 					method: 'POST',
-					url: 'login',
+					url: 'api/login',
 					headers: { 'Content-Type' : 'application/x-www-form-urlencoded' },
 					data: $.param(authCredentials)
 				});

@@ -4,13 +4,13 @@
 var myApp = angular.module('myApp', ['projectsService', 'mainController', 'ngRoute']);
 
    // double-check that the app has been configured
-   myApp.run([ function() {
+   myApp.run( function() {
       
    //       // establish authentication
    //       $rootScope.auth = loginService.init('/login');
    //       //$rootScope.FBURL = FBURL;
       
-   }])
+   });
 
    // configure views; note the authRequired parameter for authenticated pages
   myApp.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
@@ -18,12 +18,12 @@ var myApp = angular.module('myApp', ['projectsService', 'mainController', 'ngRou
       $locationProvider.html5Mode(true);
       
       $routeProvider.when('/', {
-         templateUrl: 'js/views/site/index.php',
+         templateUrl: 'js/views/site/index.html',
          controller: 'mainCtrl'
       });
 
       $routeProvider.when('/login', {
-         templateUrl: 'js/views/auth/login.php',
+         templateUrl: 'js/views/auth/login.html',
          controller: 'authCtrl'
       });
 

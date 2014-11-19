@@ -49,7 +49,7 @@ class AuthController extends BaseController {
 			if(Auth::attempt($credentials)){
 
 				return Response::json(array('user'=>Auth::user()->toArray()), 202);
-				// return Redirect::to('admin');
+				return Redirect::to('admin');
 
 			} else {
 
@@ -57,7 +57,7 @@ class AuthController extends BaseController {
 			}
 		}
 
-		// return Redirect::to('auth/login')->withErrors($v);
+		return Redirect::to('auth/login')->withErrors($v);
 		// console.log('loginerr');
 
 	}

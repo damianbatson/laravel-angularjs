@@ -42,8 +42,8 @@
 		<p><a href="#" ng-click="deleteComment(comment.id)" class="text-muted">Delete</a></p>
 	</div>
 
-		<form class="form-horizontal" ng-submit="login()">
-    <div class="control-group">
+		<form class="form-horizontal" ng-submit="logout()">
+<!--     <div class="control-group">
         <label class="control-label" for="inputEmail">Email</label>
         <div class="controls">
             <input type="text" id="inputEmail" placeholder="Email" ng-model="adminData.email" required>
@@ -54,10 +54,10 @@
         <div class="controls">
             <input type="password" id="inputPassword" placeholder="Password" ng-model="adminData.password" required>
         </div>
-    </div>
+    </div> -->
     <div class="control-group">
         <div class="controls">
-            <button type="submit" class="btn">Sign in</button>
+            <button type="submit" class="btn">Logout</button>
         </div>
     </div>
 

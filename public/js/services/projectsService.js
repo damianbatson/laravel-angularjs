@@ -59,6 +59,10 @@ angular.module('projectsService', ['ngRoute'])
 				return $http.get('api/admin');
 				console.log('connect');
 			},
+			logout : function() {
+				return $http.get('api/logout');
+				console.log('connect');
+			},
 			destroy : function(id) {
 				return $http.delete('api/projects/' + id);
 			}

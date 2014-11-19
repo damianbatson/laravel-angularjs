@@ -41,18 +41,17 @@ Route::post('login', 'AuthController@postLogin');
 // Route::get('auth/register', 'AuthController@getRegister');
 Route::post('register', 'AuthController@postRegister');
 
-Route::group(array('before' => 'auth.basic'), function(){
+Route::group(array('before' => 'auth.basic'), function(){	
 
-	
-	Route::get('logout', 'AuthController@logout');
-	Route::resource('portfolios', 'PortfoliosController');
 	Route::group(array('prefix' => 'api'), function() {
 
 	// since we will be using this just for CRUD, we won't need create and edit
 	// Angular will handle both of those forms
 	// this ensures that a user can't access api/create or api/edit when there's nothing there
-		Route::resource('projects', 'ProjectsController');
 		Route::get('admin', 'AdminController@index');
+		Route::get('logout', 'AdminController@logout');
+		Route::resource('projects', 'ProjectsController');
+		Route::resource('portfolios', 'PortfoliosController');
 	});
 });
 

@@ -29,4 +29,9 @@ class AdminController extends BaseController {
 		return Response::json(User::find($id));
 	}
 
+	public function logout(){
+		Auth::logout();
+		return Redirect::to('/');
+	}
+
 }

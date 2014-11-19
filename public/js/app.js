@@ -18,62 +18,53 @@ var myApp = angular.module('myApp', ['projectsService', 'mainController', 'ngRou
       $locationProvider.html5Mode(true);
       
       $routeProvider.when('/', {
-         templateUrl: 'js/site/index.html',
+         templateUrl: 'js/views/site/index.php',
          controller: 'mainCtrl'
       });
 
       $routeProvider.when('/login', {
-         templateUrl: 'js/auth/login.html',
+         templateUrl: 'js/views/auth/login.php',
          controller: 'authCtrl'
       });
 
       $routeProvider.when('/register', {
-         templateUrl: 'js/auth/register.php',
+         templateUrl: 'js/views/auth/register.php',
          controller: 'authCtrl'
       });
   
        $routeProvider.when('/admin', {
          // authRequired: true,
-         templateUrl: 'admin/index.php',
+         templateUrl: 'js/views/admin/index.php',
          controller: 'adminCtrl'
       });
 
        $routeProvider.when('projects', {
          // authRequired: true,
-         templateUrl: 'js/projects/index.html',
+         templateUrl: 'js/views/projects/index.php',
          controller: 'projectsCtrl'
       });
 
 
   }]);
 
-  myApp.config(function($httpProvider){
-        var interceptor = function($rootScope,$location,$q, FlashService){
-        var success = function(response){
-            return response
-        };
-        var error = function(response){
-            if (response.status == 401){
-                delete sessionStorage.authenticated
-                $location.path('/')
-                FlashService.show(response.data.flash)
+myApp.factory('authHttpResponseInterceptor',['$q','$location',function($q,$location){
+    return {
+        response: function(response){
+            if (response.status === 401) {
+                console.log("Response 401");
             }
-            return $q.reject(response)
-        };
-            return function(promise){
-                return promise.then(success, error)
-            };
-        };
-        $httpProvider.responseInterceptors.push(interceptor)
-    });
-
-  myApp.factory("FlashService", function($rootScope) {
-  return {
-    show: function(message) {
-      $rootScope.flash = message;
-    },
-    clear: function() {
-      $rootScope.flash = "";
+            return response || $q.when(response);
+        },
+        responseError: function(rejection) {
+            if (rejection.status === 401) {
+                console.log("Response Error 401",rejection);
+                $location.path('/login').search('returnTo', $location.path());
+            }
+            return $q.reject(rejection);
+        }
     }
-  }
-});
+}]);
+myApp.config(['$httpProvider',function($httpProvider) {
+    //Http Intercpetor to check auth failures for xhr requests
+    $httpProvider.interceptors.push('authHttpResponseInterceptor');
+}]);

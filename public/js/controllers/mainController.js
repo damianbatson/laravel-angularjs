@@ -164,6 +164,28 @@ angular.module('mainController', ['ngRoute'])
 
 			});
 
+		$scope.logout = function() {
+			$scope.loading = true;
+
+			// save the comment. pass in comment data from the form
+			// use the function we created in our service
+			Users.logout($scope.authData)
+				.success(function(data) {
+					$location.path('/').replace();
+					$scope.$apply();
+					// if successful, we'll need to refresh the comment list
+					// Users.get()
+					// 	.success(function(getData) {
+					// 		$scope.users = getData;
+					// 		$scope.loading = false;
+					// 	});
+
+				})
+				.error(function(data) {
+					console.log(data);
+				});
+		};
+
 	})
 
 	.controller('projectsCtrl', function($scope, $http, Projects) {
@@ -188,7 +210,7 @@ angular.module('mainController', ['ngRoute'])
 
 		// function to handle submitting the form
 		// SAVE A COMMENT ======================================================
-		$scope.submitComment = function() {
+		$scope.submitComment = function(projectData) {
 			$scope.loading = true;
 
 			// save the comment. pass in comment data from the form

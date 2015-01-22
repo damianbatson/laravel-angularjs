@@ -98,9 +98,9 @@ angular.module('mainController', ['ngRoute'])
 			Users.login($scope.authCredentials)
 				.success(function(data) {
 					
-					if(success){
-					$location.path('/admin').replace();
-					if (!$rootScope.$$phase) $rootScope.$apply();
+					if(data){
+					$location.path('/admin');
+					// if (!$rootScope.$$phase) $rootScope.$apply();
 					console.log(data);
 				}
 

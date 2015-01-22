@@ -23,7 +23,7 @@ var myApp = angular.module('myApp', ['projectsService', 'mainController', 'ngRou
       });
 
       $routeProvider.when('/login', {
-         templateUrl: 'js/views/auth/login.html',
+         templateUrl: 'js/views/login.html',
          controller: 'authCtrl'
       });
 
@@ -34,7 +34,7 @@ var myApp = angular.module('myApp', ['projectsService', 'mainController', 'ngRou
   
        $routeProvider.when('/admin', {
          // authRequired: true,
-         templateUrl: 'js/views/admin/index.php',
+         templateUrl: 'js/views/admin.html',
          controller: 'adminCtrl'
       });
 

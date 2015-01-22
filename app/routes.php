@@ -25,7 +25,7 @@ Route::get('register', function()
 });
 Route::get('admin', function()
 {
-	return View::make('admin.index'); // will return app/views/index.php
+	return View::make('admin.admin'); // will return app/views/index.php
 });
 Route::get('projects', function()
 {
@@ -65,5 +65,5 @@ Route::group(array('before' => 'auth.basic'), function(){
 // this allows angular to route them
 App::missing(function($exception)
 {
-	return View::make('site.index');
+	return View::make('index');
 });

@@ -1,6 +1,6 @@
-angular.module('projectsService', ['ngRoute'])
+// angular.module('projectsService', ['ngRoute'])
 
-	.factory('Projects', function($http) {
+	app.factory('Projects', function($http) {
 
 		return {
 			get : function() {
@@ -29,7 +29,7 @@ angular.module('projectsService', ['ngRoute'])
 
 	})
 
-		.factory('Users', function($http) {
+		app.factory('Users', function($http) {
 
 		return {
 			get : function() {
@@ -42,7 +42,7 @@ angular.module('projectsService', ['ngRoute'])
 			login : function(authCredentials) {
 				return $http({
 					method: 'POST',
-					url: 'api/login',
+					url: '/api/login',
 					headers: { 'Content-Type' : 'application/x-www-form-urlencoded' },
 					data: $.param(authCredentials)
 				});

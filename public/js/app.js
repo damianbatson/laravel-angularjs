@@ -1,53 +1,27 @@
-'use strict';
 
-// Declare app level module which depends on filters, and services
-var myApp = angular.module('myApp', ['projectsService', 'mainController', 'ngRoute']);
+var app =  angular.module('poolApp',['ngRoute']);
 
-   // double-check that the app has been configured
-   myApp.run( function() {
-      
-   //       // establish authentication
-   //       $rootScope.auth = loginService.init('/login');
-   //       //$rootScope.FBURL = FBURL;
-      
-   });
+app.config(['$routeProvider',
+    function($routeProvider) {
+        $routeProvider.
+            when('/admin', {
+                templateUrl: 'js/views/admin.html',
+                controller: 'adminController'
+            }).
+            when('/view', {
+                templateUrl: 'js/views/list.html',
+                controller: 'poolController'
+            }).
+            when('/auth/login', {
+                templateUrl: 'js/views/auth/login.html',
+                controller: 'loginController'
+            }).
+            otherwise({
+                redirectTo: '/view'
+            });
+    }]);
 
-   // configure views; note the authRequired parameter for authenticated pages
-  myApp.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
-      $routeProvider.otherwise({redirectTo: '/'});
-      $locationProvider.html5Mode(true);
-      
-      $routeProvider.when('/', {
-         templateUrl: 'js/views/site/index.html',
-         controller: 'mainCtrl'
-      });
-
-      $routeProvider.when('/login', {
-         templateUrl: 'js/views/login.html',
-         controller: 'authCtrl'
-      });
-
-      $routeProvider.when('/register', {
-         templateUrl: 'js/views/auth/register.php',
-         controller: 'authCtrl'
-      });
-  
-       $routeProvider.when('/admin', {
-         // authRequired: true,
-         templateUrl: 'js/views/admin.html',
-         controller: 'adminCtrl'
-      });
-
-       $routeProvider.when('projects', {
-         // authRequired: true,
-         templateUrl: 'js/views/projects/index.php',
-         controller: 'projectsCtrl'
-      });
-
-
-  }]);
-
-myApp.factory('authHttpResponseInterceptor',['$q','$location',function($q,$location){
+app.factory('authHttpResponseInterceptor',['$q','$location',function($q,$location){
     return {
         response: function(response){
             if (response.status === 401) {
@@ -64,7 +38,7 @@ myApp.factory('authHttpResponseInterceptor',['$q','$location',function($q,$locat
         }
     }
 }]);
-myApp.config(['$httpProvider',function($httpProvider) {
+app.config(['$httpProvider',function($httpProvider) {
     //Http Intercpetor to check auth failures for xhr requests
     $httpProvider.interceptors.push('authHttpResponseInterceptor');
 }]);

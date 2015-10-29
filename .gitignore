@@ -2,3 +2,6 @@
 /vendor
 /public/images
 .env
+composer.phar
+composer.lock
+.DS_Store

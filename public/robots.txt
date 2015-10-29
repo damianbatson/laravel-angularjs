@@ -1,2 +1,6 @@
 User-agent: *
+<<<<<<< HEAD
 Disallow:
+=======
+Disallow: 
+>>>>>>> fc1384218055fae9307d88451b8afccf31aafc8e

@@ -3,7 +3,7 @@
         <div class="panel panel-default">
             <div class="panel-heading"><h3>Pool Admin</h3></div>
             <div class="panel-body">
-                <input type="text" ng-model="newpool.title">
+                <input type="text" ng-model="pools.pool.title">
                 <button class="btn btn-primary" type="button" ng-click="addPool()">Add Pool</button>
                 <div class="row">
                     <a href="#/view" class="thumb"><button class="btn btn-primary" type="button">List</button></a>
@@ -22,10 +22,10 @@
                     </button></td>
                 </tr>
                 <tr><td>
-                    <input type="text" ng-model="newoption.title" name="title">
+                    <input type="text" ng-model="pooloption.title" name="title">
                 </td>
                 <td>
-                    <button class="btn btn-primary" type="button" ng-click="addOption(pool,newoption)">Add Opt</button>
+                    <button class="btn btn-primary" type="button" ng-click="addOption(pool,pooloption)">Add Opt</button>
                 </td>
             </tr>
         </table>

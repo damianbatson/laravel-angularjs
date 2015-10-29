@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/', 'WelcomeController@index');
+Route::get('/', 'IndexController@index');
 
 Route::get('home', 'HomeController@index');
 
@@ -20,6 +20,10 @@ Route::controllers([
 	'password' => 'Auth\PasswordController',
 ]);
 
+Route::post('api/login', 'Auth\AuthController@postLogin');
+
+Route::get('admin', 'AdminController@index');
+Route::resource('projects', 'ProjectController');
 
 Route::get('api/todo', ['uses' => 'TodoController@index','middleware'=>'simpleauth']);
 Route::post('api/todo', ['uses' => 'TodoController@store','middleware'=>'simpleauth']);

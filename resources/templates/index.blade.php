@@ -1,43 +1,22 @@
-@extends('layouts.single')
+<!DOCTYPE html>
+<html>
+    <head>
+        <!--Angulare -->
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular-route.js"></script>
+        <!--Applicazione -->
+        <script src="js/app.js"></script>
+        <script src="js/controllers/PoolController.js"></script>
+        <script src="js/services/projectsService.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+    </head>
+    <body ng-app="poolApp">
 
-@section('content')
+    <div class="container-fluid">
 
-<div class="container">
-    <div class="row">
-        <div class="col-lg-12">
-            
-                <!-- <a href="http://laravel.com" title="Laravel PHP Framework"></a> -->
-                <h2 class="projectTitle">Portfolio</h2>
-                <li class="Login">{!! HTML::link('auth/login', 'Login') !!}</li>
-                @foreach ($projects as $project)
-                    <div class="col-sm-6">
-                    <div class="col-md-8">
-                    <h3 class="projectTitle">{{ $project->exercise }}</h3>
-                    <h5>{{ $project->id }}</h5>
-                    
-                    <p>{{ $project->description }}</p>
-                    <p>{!! HTML::link('projects/'.$project->id, 'link to project') !!}</p>
-                    
-                    </div>
-                    <div class="col-md-4"><img class="img-responsive" src="{{ $project->image }}"></div>
-                    <hr>
-                    </div>
-                @endforeach
-
-            
-        </div>
+        <ng-view></ng-view>
     </div>
-
-    <hr>
-
-    <footer>
-        <div class="row">
-            <div class="col-lg-12">
-                <p>Copyright &copy; Company 2013 &middot; Facebook &middot; Twitter &middot; Google+</p>
-            </div>
-        </div>
-    </footer>
-
-</div><!-- /.container -->
-
-@stop
+        
+    </body>
+</html>

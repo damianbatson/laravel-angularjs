@@ -1,8 +1,10 @@
 
 var app =  angular.module('poolApp',['ngRoute']);
 
-app.config(['$routeProvider',
-    function($routeProvider) {
+app.config(['$routeProvider', '$locationProvider',   function($routeProvider, $locationProvider) {
+        $locationProvider.html5Mode(false);
+    $locationProvider.hashPrefix = '!';
+
         $routeProvider.
             when('/admin', {
                 templateUrl: 'js/views/admin.html',

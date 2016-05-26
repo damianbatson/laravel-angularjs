@@ -10,7 +10,7 @@ angular.module('authService', ['ngRoute'])
 			show : function(id) {
 				return $http.get('/api/projects/' + id);
 			},
-			// login : function(authData) {
+			login : function(authData) {
 				return $http({
 					method: 'POST',
 					url: '/auth/',
